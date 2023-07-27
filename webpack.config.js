@@ -49,6 +49,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          "style-loader",
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
@@ -60,6 +61,14 @@ module.exports = {
               }
             }
           },
+
+        {
+          loader: "css-loader",
+          options: {
+            importLoaders: 1,
+            modules: true,
+          },
+        },
           {
             loader: 'postcss-loader',
             options: {
@@ -78,7 +87,13 @@ module.exports = {
               ]
             }
           }
-        ]
+        ],
+        include: /\.module\.css$/,
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+        exclude: /\.module\.css$/,
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
