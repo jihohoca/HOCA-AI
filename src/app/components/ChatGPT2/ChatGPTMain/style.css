@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .chatgptmain{
     background-color: white;
     flex: 4;

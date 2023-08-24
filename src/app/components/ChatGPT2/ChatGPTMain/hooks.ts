@@ -1,0 +1,4 @@
+const useChatGPTMain = () => {
+};
+
+export { useChatGPTMain };

@@ -1,36 +1,111 @@
-import React from 'react';
-import style from './style.css'
-import avatar from '../../../../images/Ellipse 35.svg'
+import React, { useState } from 'react';
+import style from './style.css';
+import avatar from '../../../../images/Ellipse 35.svg';
 
 export const Body = () => {
+  const [chat, setChat] = useState<any>([]);
+  // const [chatHistory, setChatHistory] = useState<any>([]);
+  // const [title, setTitle] = useState<any>('');
+  const [input, setInput] = useState<any>('');
+
+  const handleSend = async () => {
+    if (input.trim) {
+      setChat([...chat, { role: 'user', content: input }]);
+      setInput('');
+      const response: any = await fetch('http://localhost:8000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          messages: [...chat, { role: 'user', content: input }]
+        })
+      });
+      console.log('🚀 ~ file: index.tsx:24 ~ handleSend ~ response:', response);
+
+      //eslint-disable-next-line
+      const readData = response.body.pipeThrough(new TextDecoderStream()).getReader();
+      console.log('🚀 ~ file: index.tsx:27 ~ handleSend ~ readData:', readData);
+      let aiRes = '';
+      while (true) {
+        const { done, value } = await readData.read();
+        console.log('dang doc ' + value);
+        if (done) {
+          break;
+        }
+        aiRes += value;
+        setChat([...chat, { role: 'user', content: input }, { role: 'assistant', content: aiRes }]);
+      }
+
+      // if (!title) {
+      //   const createTitle = await fetch('http://localhost:8000/api/title', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({
+      //       title: input,
+      //     }),
+      //   });
+
+      //   const title = await createTitle.json();
+      //   setTitle(title?.title);
+      //   setChatHistory([...chatHistory, title]);
+      // }
+    }
+  };
+
   return (
     <div>
-      <div className={style.infor_input_user}>
-      <div className={style.avatar_user}><img className={style.avatar} src={avatar}></img></div>
-      <div className={style.input_user}>Write a paragraph more than 400 word about me as a senior graphic
-         designer and UI designer. I'm a graphic designer with 4 year experience, get A bachelor's degree as a graphic designer.
-          My strong skill is about layout, typography, branding and logo design. I have an ability to meet design deadline on time.</div>
+      {chat.map((item: any, index: any) =>
+        item.role === 'user' ? (
+          <div className={style.infor_input_user}>
+            <div className={style.avatar_user}>
+              <img className={style.avatar} src={avatar}></img>
+            </div>
+            <div className={style.input_user}>{item.content}</div>
+          </div>
+        ) : (
+          <div className={style.chatgpt_answer_user}>
+            <div className={style.avatar_user}>
+              <img className={style.avatar} src={avatar}></img>
+            </div>
+            <div className={style.input_user}>{item.content}</div>
+          </div>
+        )
+      )}
+
+      <div>
+        <div className={style.button_input}>
+          <input
+            className={style.input_message}
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+            placeholder="Send a message"
+          />
+          <span
+            className=" absolute right-4 top-4 cursor-pointer"
+            onClick={() => (input.trim() ? handleSend() : undefined)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-send"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M10 14l11 -11"></path>
+              <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"></path>
+            </svg>
+          </span>
+        </div>
       </div>
-
-      <div className={style.chatgpt_answer_user}>
-      <div className={style.avatar_user}><img className={style.avatar} src={avatar}></img></div>
-      <div className={style.input_user}>You are a seasoned graphic designer 
-      with a strong passion for design and a solid foundation of knowledge 
-      and experience. With a bachelor's degree in graphic design and 4 years 
-      of professional experience, you have honed your skills in layout, 
-      typography, branding, and logo design. Your attention to detail and 
-      ability to create visually appealing designs has earned you recognition 
-      in your field. You understand the importance of effective communication 
-      in the design process and have a great ability to work with clients and team members to produce
-       designs that meet their needs. You have a natural talent for creating cohesive and well-balanced designs that communicate 
-       your clients' messages in a clear and compelling way. In addition, you are highly organized and able to meet deadlines, making you an indispensable 
-       member of any design team. Whether working on a large-scale
-        branding project or a simple logo design, you bring your passion and creativity to every project, ensuring that each design is not only visually stunning, but also
-         functional and effective. With your skills, experience, and positive attitude, you are sure to continue making a lasting impact in the world of graphic design.</div>
-  
-      </div>
-
-
     </div>
   );
 };
