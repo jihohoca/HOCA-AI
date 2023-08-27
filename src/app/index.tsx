@@ -23,11 +23,11 @@ const App: FC<Props> = () => (
         <Route path="/login" element={<AppLogin />} />
         <Route path="/" element={<HomePageApp />} />
         <Route path="/signup" element={<AppSignUp />} />
+        <Route path="/field" element={<SelectField />} />
+        <Route path="/chatbase" element={<ChatBaseApp />}></Route>
         <Route element={<SideBar/>}>
           <Route path="/chatgpt1" element={<ChatGPT1App />} />
           <Route path="/chatgpt2" element={<ChatGPT2App />} />
-          <Route path="/field" element={<SelectField />} />
-          <Route path="/chatbase" element={<ChatBaseApp />}></Route>
           <Route path="/chatbase4" element={<ChatBaseApp4 />} />
           <Route path="/chatbase5" element={<ChatBase5 />} />
         </Route>
