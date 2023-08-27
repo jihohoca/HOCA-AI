@@ -36,25 +36,20 @@ a {
 
 .address {
   margin-top: 30px;
-  width: 378px;
+  width: 370px;
   padding: 20px;
   border: 2px solid #ccc;
   border-radius: 6px;
-  margin-left: 5px;
   background: no-repeat;
 }
 
 .password {
   margin-top: 20px;
-  width: 378px;
+  width: 370px;
   padding: 20px;
-  margin-left: 4px;
+  margin-left: 28px;
   border: 2px solid #ccc;
   border-radius: 6px;
-  background: no-repeat;
-  background-image: url('../../../images/eye.png');
-  background-position: right center;
-  background-origin: content-box;
 }
 
 .check_password{
@@ -80,6 +75,7 @@ a {
   font-size: 16px;
   font-weight: 500;
   line-height: 50%;
+  margin-left: 175px;
   color: #262626;
 }
 
@@ -100,7 +96,7 @@ a {
 
 .continute {
   display: flex;
-  width: 375px;
+  width: 408px;
   height: 58px;
   margin: auto;
   margin-top: 21px;
@@ -124,6 +120,12 @@ a {
   line-height: 140%;
   background-color: #60ae89;
   text-decoration: none;
+}
+
+.image_eye {
+  position: relative;
+  right: 30px;
+  top: 8px;
 }
 .sigup {
   margin-top: 30px;
@@ -196,7 +198,8 @@ a {
 .validation_email {
   margin-top: 8px;
   color: #60AE89;
-  margin-right: 210px;
+  margin-right: 295px;
+
 }
 .link_login{
   text-decoration: none;
