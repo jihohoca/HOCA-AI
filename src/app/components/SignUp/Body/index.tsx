@@ -6,9 +6,10 @@ import apple from '../../../images/apple.png';
 import check from '../../../images/check right.png';
 import eyes from '../../../images/eye.png'
 import { Link} from 'react-router-dom';
-
+import {useSignup} from './hook'
 
 export const Body = () => {
+  const { signup } = useSignup();
   const initValues = { email: '', password: '' };
   const [formValues, setFormValues] = useState(initValues);
   const [formErrors, setFormErrors] = useState({ email: '', password: '' });
@@ -32,6 +33,8 @@ export const Body = () => {
 
     if (checkPassword == false && validateEmail == true) {
      
+      signup({email: formValues.email, password: formValues.password});
+
       setCheckPassword(false);
       setValidateEmail(false);
     }
