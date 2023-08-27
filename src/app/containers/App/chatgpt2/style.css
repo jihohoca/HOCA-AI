@@ -1,3 +1,5 @@
 .chatgpt2{
-    display: flex;
+    display: block;
+    float: right;
+    width: 70%;
 }

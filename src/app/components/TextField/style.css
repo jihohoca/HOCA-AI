@@ -1,0 +1,27 @@
+.input_user {
+    margin-top: 6px;
+    width: 85%;
+    margin-right: 15px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    background-origin: content-box;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .input_prompt{
+    margin-top: 6px;
+    width: 85%;
+    margin-right: 15px;
+    padding: 8px;
+    height: 154px;
+    box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    background-origin: content-box;
+    background-color: #fff;
+    color: #000;
+  }
+  

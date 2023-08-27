@@ -1,0 +1,37 @@
+.test {
+    position:fixed;
+    bottom:0;
+}
+
+.blank {
+    display: flex;
+    width: 421px;
+    height: 20px;
+    border-top: white 1px solid;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.avatar_account{
+    display: flex;
+  }
+
+.account {
+    margin-left: 10px;
+    margin-top: 9px;
+    color: #fff;
+  }
+
+.avatar{
+    background-image: url('https://i.stack.imgur.com/Dj7eP.jpg');
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+}
+
+.setting {
+  margin-left: 98px;
+  margin-top: 8px;
+}

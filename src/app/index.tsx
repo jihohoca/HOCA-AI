@@ -10,7 +10,8 @@ import { ChatGPT2 as ChatGPT2App } from './containers/App/chatgpt2';
 import { ChatBase as ChatBaseApp } from './containers/App/chatbase';
 import { ChatBase4 as ChatBaseApp4 } from './containers/App/chatbase4';
 import { SelectField } from './containers/App/select_field';
-
+import { ChatBase5 } from './containers/App/chatbase5';
+import { SideBar } from './components/\bSideBar';
 
 // prepare store
 const store = configureStore();
@@ -20,13 +21,16 @@ const App: FC<Props> = () => (
     <Router>
       <Routes>
         <Route path="/login" element={<AppLogin />} />
-        <Route path="/chatgpt1" element={<ChatGPT1App />} />
-        <Route path="/chatgpt2" element={<ChatGPT2App />} />
-        <Route path="/field" element={<SelectField />} />
-        <Route path="/signup" element={<AppSignUp />} />
-        <Route path="/chatbase" element={<ChatBaseApp />}></Route>
-        <Route path="/chatbase4" element={<ChatBaseApp4 />} />
         <Route path="/" element={<HomePageApp />} />
+        <Route element={<SideBar/>}>
+          <Route path="/chatgpt1" element={<ChatGPT1App />} />
+          <Route path="/chatgpt2" element={<ChatGPT2App />} />
+          <Route path="/field" element={<SelectField />} />
+          <Route path="/signup" element={<AppSignUp />} />
+          <Route path="/chatbase" element={<ChatBaseApp />}></Route>
+          <Route path="/chatbase4" element={<ChatBaseApp4 />} />
+          <Route path="/chatbase5" element={<ChatBase5 />} />
+        </Route>
       </Routes>
     </Router>
   </Provider>
